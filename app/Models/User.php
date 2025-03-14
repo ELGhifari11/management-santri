@@ -21,7 +21,8 @@ class User extends Authenticatable  implements FilamentUser
 
     public function canAccessPanel(Panel $panel): bool
     {
-        if (Auth::user()->role === $panel->getId()) {
+        $role = Str::lower(Auth::user()->role);
+        if ($role === $panel->getId()) {
             return true;
         } else {
             return false;
